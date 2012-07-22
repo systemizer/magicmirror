@@ -1,6 +1,6 @@
 import tornado.ioloop
 import tornado.web
-from tornado import template
+from tornado import template, options
 import requests
 import random
 import envoy
@@ -18,6 +18,7 @@ import requests
 import json
 from utils import image_search, wikipedia_search, wolframalpha_search, freebase_search
 
+options.logging='none'
 
 loader = template.Loader("templates")
 
@@ -82,9 +83,9 @@ class AudioHandler(tornado.web.RequestHandler):
 		#url = "http://en.wikipedia.org/wiki/%s" % url_path
 
 		#r2 = requests.get(url)
-
+		background_size = "contain"
 		image = image_search(keyword)		
-		self.write(loader.load("image.html").generate(image_url=image['url']))
+		self.write(loader.load("image.html").generate(image_url=image['url'],background_size=background_size))
 
 
 
