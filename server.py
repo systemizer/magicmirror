@@ -14,7 +14,7 @@ loader = template.Loader("templates")
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write(loader.load("index.html").generate())
+        self.write(loader.load("index.html").generate(query_type=None))
 
 class ImageHandler(tornado.web.RequestHandler):
     def get(self):
