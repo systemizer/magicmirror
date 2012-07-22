@@ -2,6 +2,8 @@ import memcache
 import requests
 import random
 import envoy
+import NaiveWordSelector
+
 
 kestrel = memcache.Client(['127.0.0.1:22133'])
 
@@ -14,7 +16,7 @@ while True:
 	file.write(next_file)
 	file.close()
 
-	command = '/opt/sox-14.4.0/sox tempfiles/'+ filename + '.wav ' + 'tempfiles/' + filename + '.flac'
+#	command = '/opt/sox-14.4.0/sox tempfiles/'+ filename + '.wav ' + 'tempfiles/' + filename + '.flac'
 #	print 'command: ', command
 
 	r = envoy.run(command)
@@ -28,8 +30,13 @@ while True:
 			files={'eiffel.flac' : open('tempfiles/' + filename + '.flac' , 'rb')},
 				headers=headers)
 
-#	print r
-	print r.content['hypotheses'][0]['utterance']
+#	print r.json
+	
+	if not hypotheses:
+		self.write('status' : 'none found')
+	utterance = r.json['hypotheses'][0]['utterance']
+	keyword = NaiveWordSelector.topKeyword(utterance.split(' '))
+	print keyword
 
 
 
