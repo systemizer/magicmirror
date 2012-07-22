@@ -1,7 +1,9 @@
 <!DOCTYPE>
 <html>
   <head>
+	{% if query_type %}
 	<meta name="query_type" content="{{query_type}}" />
+	{% end %}
 	<meta HTTP-EQUIV="REFRESH" content="0; url={{url}}">
   </head>
   <body>
