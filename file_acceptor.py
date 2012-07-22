@@ -1,5 +1,6 @@
 import tornado.ioloop
 import tornado.web
+from tornado import template
 import memcache
 import memcache
 import requests
@@ -18,6 +19,10 @@ from mwlib.uparser import simpleparse
 import markdown
 import requests
 import json
+from utils import image_search, wikipedia_search, wolframalpha_search, freebase_search
+
+
+loader = template.Loader("templates")
 
 
 class MainHandler(tornado.web.RequestHandler):
@@ -26,6 +31,7 @@ class MainHandler(tornado.web.RequestHandler):
 
 class AudioHandler(tornado.web.RequestHandler):
     def post(self):
+
 		#print '_______________', self.request.files
 		body = self.request.files['recording'][0]['body']
 	
@@ -60,26 +66,28 @@ class AudioHandler(tornado.web.RequestHandler):
 		print keyword
 
 		payload1 = {'query':keyword}
-		url1 = "%s?%s" % ("https://www.googleapis.com/freebase/v1/search",urllib.urlencode(payload1))
+		#url1 = "%s?%s" % ("https://www.googleapis.com/freebase/v1/search",urllib.urlencode(payload1))
 
-		r1 = requests.get(url1)
-		results = r1.json['result']
+		#r1 = requests.get(url1)
+		#results = r1.json['result']
 
-		f_result = None
+		#f_result = None
 
-		for result in results:
-			if result.has_key("id") and result['id'].startswith("/en/") and result.has_key("notable"):
-				f_result = result
-				break
+		#for result in results:
+		#	if result.has_key("id") and result['id'].startswith("/en/") and result.has_key("notable"):
+		#		f_result = result
+		#		break
 
-		if not f_result:
-			f.write("failed to find entity")
+		#if not f_result:
+		#	f.write("failed to find entity")
 
-		url_path = f_result['id'].replace("/en/","")
-		url = "http://en.wikipedia.org/wiki/%s" % url_path
+		#url_path = f_result['id'].replace("/en/","")
+		#url = "http://en.wikipedia.org/wiki/%s" % url_path
 
-		r2 = requests.get(url)
-		self.write(r2.text)
+		#r2 = requests.get(url)
+
+		image = image_search(keyword)		
+		self.write(loader.load("image.html").generate(image_url=image['url']))
 
 
 
