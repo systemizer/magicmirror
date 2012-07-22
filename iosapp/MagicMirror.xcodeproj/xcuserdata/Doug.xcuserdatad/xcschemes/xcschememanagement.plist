@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Magic Mirror.xcscheme</key>
+		<key>MagicMirror.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>9133510A15BB5DF3002D5FF4</key>
+		<key>91F7478C15BB666500C8A8F0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

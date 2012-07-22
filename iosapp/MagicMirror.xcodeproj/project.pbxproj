@@ -1,0 +1,442 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		91F7479215BB666500C8A8F0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F7479115BB666500C8A8F0 /* UIKit.framework */; };
+		91F7479415BB666500C8A8F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F7479315BB666500C8A8F0 /* Foundation.framework */; };
+		91F7479615BB666500C8A8F0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F7479515BB666500C8A8F0 /* CoreGraphics.framework */; };
+		91F7479C15BB666500C8A8F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91F7479A15BB666500C8A8F0 /* InfoPlist.strings */; };
+		91F7479E15BB666500C8A8F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F7479D15BB666500C8A8F0 /* main.m */; };
+		91F747A215BB666500C8A8F0 /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F747A115BB666500C8A8F0 /* MMAppDelegate.m */; };
+		91F747A515BB666500C8A8F0 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91F747A315BB666500C8A8F0 /* MainStoryboard.storyboard */; };
+		91F747A815BB666500C8A8F0 /* MMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F747A715BB666500C8A8F0 /* MMViewController.m */; };
+		91F747C615BB671200C8A8F0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F747C515BB671200C8A8F0 /* CFNetwork.framework */; };
+		91F747C815BB671600C8A8F0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F747C715BB671600C8A8F0 /* CoreData.framework */; };
+		91F747CA15BB671A00C8A8F0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F747C915BB671A00C8A8F0 /* Security.framework */; };
+		91F747CC15BB672100C8A8F0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F747CB15BB672100C8A8F0 /* MobileCoreServices.framework */; };
+		91F747CE15BB672800C8A8F0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F747CD15BB672800C8A8F0 /* SystemConfiguration.framework */; };
+		91F747D015BB672D00C8A8F0 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F747CF15BB672D00C8A8F0 /* libxml2.dylib */; };
+		91F747D215BB673200C8A8F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F747D115BB673200C8A8F0 /* QuartzCore.framework */; };
+		91F747D315BB674500C8A8F0 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F747BA15BB66A400C8A8F0 /* libRestKit.a */; };
+		91F747D515BB67FF00C8A8F0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F747D415BB67FF00C8A8F0 /* AVFoundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		91F747B915BB66A400C8A8F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91F747AE15BB66A400C8A8F0 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160D1614564E810060A5C5;
+			remoteInfo = RestKit;
+		};
+		91F747BB15BB66A400C8A8F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91F747AE15BB66A400C8A8F0 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160D2614564E820060A5C5;
+			remoteInfo = RestKitTests;
+		};
+		91F747BD15BB66A400C8A8F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91F747AE15BB66A400C8A8F0 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160E62145651060060A5C5;
+			remoteInfo = RestKitFramework;
+		};
+		91F747BF15BB66A400C8A8F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91F747AE15BB66A400C8A8F0 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160E78145651060060A5C5;
+			remoteInfo = RestKitFrameworkTests;
+		};
+		91F747C115BB66A400C8A8F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91F747AE15BB66A400C8A8F0 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 259C301615128079003066A2;
+			remoteInfo = RestKitResources;
+		};
+		91F747C315BB670C00C8A8F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91F747AE15BB66A400C8A8F0 /* RestKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 25160D1514564E810060A5C5;
+			remoteInfo = RestKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		91F7478D15BB666500C8A8F0 /* MagicMirror.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagicMirror.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		91F7479115BB666500C8A8F0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		91F7479315BB666500C8A8F0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		91F7479515BB666500C8A8F0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		91F7479915BB666500C8A8F0 /* MagicMirror-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MagicMirror-Info.plist"; sourceTree = "<group>"; };
+		91F7479B15BB666500C8A8F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		91F7479D15BB666500C8A8F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		91F7479F15BB666500C8A8F0 /* MagicMirror-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MagicMirror-Prefix.pch"; sourceTree = "<group>"; };
+		91F747A015BB666500C8A8F0 /* MMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
+		91F747A115BB666500C8A8F0 /* MMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
+		91F747A415BB666500C8A8F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		91F747A615BB666500C8A8F0 /* MMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMViewController.h; sourceTree = "<group>"; };
+		91F747A715BB666500C8A8F0 /* MMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMViewController.m; sourceTree = "<group>"; };
+		91F747AE15BB66A400C8A8F0 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = MagicMirror/vendor/RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
+		91F747C515BB671200C8A8F0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		91F747C715BB671600C8A8F0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		91F747C915BB671A00C8A8F0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		91F747CB15BB672100C8A8F0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		91F747CD15BB672800C8A8F0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		91F747CF15BB672D00C8A8F0 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		91F747D115BB673200C8A8F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		91F747D415BB67FF00C8A8F0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		91F7478A15BB666500C8A8F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91F7479215BB666500C8A8F0 /* UIKit.framework in Frameworks */,
+				91F747D515BB67FF00C8A8F0 /* AVFoundation.framework in Frameworks */,
+				91F747D315BB674500C8A8F0 /* libRestKit.a in Frameworks */,
+				91F747D215BB673200C8A8F0 /* QuartzCore.framework in Frameworks */,
+				91F747D015BB672D00C8A8F0 /* libxml2.dylib in Frameworks */,
+				91F747CE15BB672800C8A8F0 /* SystemConfiguration.framework in Frameworks */,
+				91F747CC15BB672100C8A8F0 /* MobileCoreServices.framework in Frameworks */,
+				91F747CA15BB671A00C8A8F0 /* Security.framework in Frameworks */,
+				91F747C815BB671600C8A8F0 /* CoreData.framework in Frameworks */,
+				91F747C615BB671200C8A8F0 /* CFNetwork.framework in Frameworks */,
+				91F7479415BB666500C8A8F0 /* Foundation.framework in Frameworks */,
+				91F7479615BB666500C8A8F0 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		91F7478215BB666500C8A8F0 = {
+			isa = PBXGroup;
+			children = (
+				91F7479715BB666500C8A8F0 /* MagicMirror */,
+				91F7479015BB666500C8A8F0 /* Frameworks */,
+				91F7478E15BB666500C8A8F0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		91F7478E15BB666500C8A8F0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				91F7478D15BB666500C8A8F0 /* MagicMirror.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		91F7479015BB666500C8A8F0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91F747D415BB67FF00C8A8F0 /* AVFoundation.framework */,
+				91F747D115BB673200C8A8F0 /* QuartzCore.framework */,
+				91F747CF15BB672D00C8A8F0 /* libxml2.dylib */,
+				91F747CD15BB672800C8A8F0 /* SystemConfiguration.framework */,
+				91F747CB15BB672100C8A8F0 /* MobileCoreServices.framework */,
+				91F747C915BB671A00C8A8F0 /* Security.framework */,
+				91F747C715BB671600C8A8F0 /* CoreData.framework */,
+				91F747C515BB671200C8A8F0 /* CFNetwork.framework */,
+				91F747AE15BB66A400C8A8F0 /* RestKit.xcodeproj */,
+				91F7479115BB666500C8A8F0 /* UIKit.framework */,
+				91F7479315BB666500C8A8F0 /* Foundation.framework */,
+				91F7479515BB666500C8A8F0 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		91F7479715BB666500C8A8F0 /* MagicMirror */ = {
+			isa = PBXGroup;
+			children = (
+				91F747A015BB666500C8A8F0 /* MMAppDelegate.h */,
+				91F747A115BB666500C8A8F0 /* MMAppDelegate.m */,
+				91F747A315BB666500C8A8F0 /* MainStoryboard.storyboard */,
+				91F747A615BB666500C8A8F0 /* MMViewController.h */,
+				91F747A715BB666500C8A8F0 /* MMViewController.m */,
+				91F7479815BB666500C8A8F0 /* Supporting Files */,
+			);
+			path = MagicMirror;
+			sourceTree = "<group>";
+		};
+		91F7479815BB666500C8A8F0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				91F7479915BB666500C8A8F0 /* MagicMirror-Info.plist */,
+				91F7479A15BB666500C8A8F0 /* InfoPlist.strings */,
+				91F7479D15BB666500C8A8F0 /* main.m */,
+				91F7479F15BB666500C8A8F0 /* MagicMirror-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		91F747AF15BB66A400C8A8F0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				91F747BA15BB66A400C8A8F0 /* libRestKit.a */,
+				91F747BC15BB66A400C8A8F0 /* RestKitTests.octest */,
+				91F747BE15BB66A400C8A8F0 /* RestKit.framework */,
+				91F747C015BB66A400C8A8F0 /* RestKitFrameworkTests.octest */,
+				91F747C215BB66A400C8A8F0 /* RestKitResources.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		91F7478C15BB666500C8A8F0 /* MagicMirror */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91F747AB15BB666500C8A8F0 /* Build configuration list for PBXNativeTarget "MagicMirror" */;
+			buildPhases = (
+				91F7478915BB666500C8A8F0 /* Sources */,
+				91F7478A15BB666500C8A8F0 /* Frameworks */,
+				91F7478B15BB666500C8A8F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				91F747C415BB670C00C8A8F0 /* PBXTargetDependency */,
+			);
+			name = MagicMirror;
+			productName = MagicMirror;
+			productReference = 91F7478D15BB666500C8A8F0 /* MagicMirror.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		91F7478415BB666500C8A8F0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MM;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = MIT;
+			};
+			buildConfigurationList = 91F7478715BB666500C8A8F0 /* Build configuration list for PBXProject "MagicMirror" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 91F7478215BB666500C8A8F0;
+			productRefGroup = 91F7478E15BB666500C8A8F0 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 91F747AF15BB66A400C8A8F0 /* Products */;
+					ProjectRef = 91F747AE15BB66A400C8A8F0 /* RestKit.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				91F7478C15BB666500C8A8F0 /* MagicMirror */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		91F747BA15BB66A400C8A8F0 /* libRestKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRestKit.a;
+			remoteRef = 91F747B915BB66A400C8A8F0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		91F747BC15BB66A400C8A8F0 /* RestKitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitTests.octest;
+			remoteRef = 91F747BB15BB66A400C8A8F0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		91F747BE15BB66A400C8A8F0 /* RestKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RestKit.framework;
+			remoteRef = 91F747BD15BB66A400C8A8F0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		91F747C015BB66A400C8A8F0 /* RestKitFrameworkTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitFrameworkTests.octest;
+			remoteRef = 91F747BF15BB66A400C8A8F0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		91F747C215BB66A400C8A8F0 /* RestKitResources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitResources.bundle;
+			remoteRef = 91F747C115BB66A400C8A8F0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		91F7478B15BB666500C8A8F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91F7479C15BB666500C8A8F0 /* InfoPlist.strings in Resources */,
+				91F747A515BB666500C8A8F0 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		91F7478915BB666500C8A8F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91F7479E15BB666500C8A8F0 /* main.m in Sources */,
+				91F747A215BB666500C8A8F0 /* MMAppDelegate.m in Sources */,
+				91F747A815BB666500C8A8F0 /* MMViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		91F747C415BB670C00C8A8F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RestKit;
+			targetProxy = 91F747C315BB670C00C8A8F0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		91F7479A15BB666500C8A8F0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91F7479B15BB666500C8A8F0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		91F747A315BB666500C8A8F0 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91F747A415BB666500C8A8F0 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		91F747A915BB666500C8A8F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		91F747AA15BB666500C8A8F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		91F747AC15BB666500C8A8F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MagicMirror/MagicMirror-Prefix.pch";
+				INFOPLIST_FILE = "MagicMirror/MagicMirror-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		91F747AD15BB666500C8A8F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MagicMirror/MagicMirror-Prefix.pch";
+				INFOPLIST_FILE = "MagicMirror/MagicMirror-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		91F7478715BB666500C8A8F0 /* Build configuration list for PBXProject "MagicMirror" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91F747A915BB666500C8A8F0 /* Debug */,
+				91F747AA15BB666500C8A8F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91F747AB15BB666500C8A8F0 /* Build configuration list for PBXNativeTarget "MagicMirror" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91F747AC15BB666500C8A8F0 /* Debug */,
+				91F747AD15BB666500C8A8F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 91F7478415BB666500C8A8F0 /* Project object */;
+}

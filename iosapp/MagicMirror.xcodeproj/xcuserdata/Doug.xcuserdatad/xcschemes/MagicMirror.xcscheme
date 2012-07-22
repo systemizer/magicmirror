@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0450"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +13,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9133510A15BB5DF3002D5FF4"
-               BuildableName = "Magic Mirror.app"
-               BlueprintName = "Magic Mirror"
-               ReferencedContainer = "container:Magic Mirror.xcodeproj">
+               BlueprintIdentifier = "91F7478C15BB666500C8A8F0"
+               BuildableName = "MagicMirror.app"
+               BlueprintName = "MagicMirror"
+               ReferencedContainer = "container:MagicMirror.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +31,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9133510A15BB5DF3002D5FF4"
-            BuildableName = "Magic Mirror.app"
-            BlueprintName = "Magic Mirror"
-            ReferencedContainer = "container:Magic Mirror.xcodeproj">
+            BlueprintIdentifier = "91F7478C15BB666500C8A8F0"
+            BuildableName = "MagicMirror.app"
+            BlueprintName = "MagicMirror"
+            ReferencedContainer = "container:MagicMirror.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,10 +50,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9133510A15BB5DF3002D5FF4"
-            BuildableName = "Magic Mirror.app"
-            BlueprintName = "Magic Mirror"
-            ReferencedContainer = "container:Magic Mirror.xcodeproj">
+            BlueprintIdentifier = "91F7478C15BB666500C8A8F0"
+            BuildableName = "MagicMirror.app"
+            BlueprintName = "MagicMirror"
+            ReferencedContainer = "container:MagicMirror.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -69,10 +68,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9133510A15BB5DF3002D5FF4"
-            BuildableName = "Magic Mirror.app"
-            BlueprintName = "Magic Mirror"
-            ReferencedContainer = "container:Magic Mirror.xcodeproj">
+            BlueprintIdentifier = "91F7478C15BB666500C8A8F0"
+            BuildableName = "MagicMirror.app"
+            BlueprintName = "MagicMirror"
+            ReferencedContainer = "container:MagicMirror.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
