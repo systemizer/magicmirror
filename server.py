@@ -28,8 +28,10 @@ class ImageHandler(tornado.web.RequestHandler):
 
         url = "%s?%s" % (base_url,urllib.urlencode(payload))
         r = requests.get(url)
-        image_url = r.json['responseData']['results'][0]['url']
-        self.write(loader.load("image.html").generate(image_url=image_url))
+        images = r.json['responseData']['results']
+        
+        image = sorted(images,key= lambda x: -int(x['width']))[0]
+        self.write(loader.load("image.html").generate(image_url=image['url']))
 
 class WikipediaHandler(tornado.web.RequestHandler):
     def get(self):
