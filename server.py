@@ -11,6 +11,7 @@ from lxml import etree
 from utils import image_search, wikipedia_search, wolframalpha_search, freebase_search, lucky_search
 
 
+
 loader = template.Loader("templates")
 
 class MainHandler(tornado.web.RequestHandler):
@@ -21,7 +22,8 @@ class ImageHandler(tornado.web.RequestHandler):
     def get(self):
         keyword = self.get_argument("keyword")
         image = image_search(keyword)
-        self.write(loader.load("image.html").generate(image_url=image['url']))
+        background_size = "contain"
+        self.write(loader.load("image.html").generate(image_url=image['url'],background_size=background_size))
 
 class LuckyHandler(tornado.web.RequestHandler):
     def get(self):
