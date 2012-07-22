@@ -12,8 +12,8 @@
 
 #define DOCUMENTS_FOLDER [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
-int RECORDING_PERIOD = 5;
-
+int RECORDING_PERIOD = 10;
+    
 @interface MMViewController ()
 
 @end
@@ -26,7 +26,8 @@ int RECORDING_PERIOD = 5;
     [super viewDidLoad];
     
     // Setup the webview
-    webView = [[UIWebView alloc] initWithFrame:self.view.frame];
+    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+    webView.delegate = self;
     [self.view addSubview:webView];
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
@@ -110,7 +111,7 @@ int RECORDING_PERIOD = 5;
     [params setData:audioData MIMEType:@"audio/x-wav" forParam:@"recording"];
     
     [params setValue:@"something" forParam:@"something"];
-    [om.client post:@"/stream/" params:params delegate:self];
+    [om.client post:@"/audio" params:params delegate:self];
     
     [self.recorder deleteRecording];
     [self makeNewRecorderAndRecord];
@@ -133,27 +134,58 @@ int RECORDING_PERIOD = 5;
 
 -(void) request:(RKRequest *)request didLoadResponse:(RKResponse *)response {
     NSLog(@"RESPONSE LOADED: \n\n  %@",response.bodyAsString);
-    
+
+
     CATransition *animation = [CATransition animation];
     [animation setDelegate:self];
-    [animation setDuration:1.0f];
+    [animation setDuration:2.0f];
     animation.startProgress = 0;
     animation.endProgress   = 1; 
-//    [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     [animation setType:@"crossfade"];
     [animation setSubtype:kCATransitionFade];
     
     [animation setRemovedOnCompletion:NO];
-    [animation setFillMode: @"extended"];
-    [animation setRemovedOnCompletion: NO];
+    //    [animation setFillMode: @"extended"];
     [[webView layer] addAnimation:animation forKey:@"crossfade"]; 
+
+    [webView loadHTMLString:response.bodyAsString baseURL:[NSURL URLWithString:@"http://"]];
+
+//    [webView removeFromSuperview];
+//    //    [self.view addSubview:newWebView];
+//    [webView loadHTMLString:response.bodyAsString baseURL:[NSURL URLWithString:@"http://"]];
+//
+    [UIView beginAnimations:@"crossfade" context:nil];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView commitAnimations];    
+    
+//    [self.view addSubview:newView];
+//    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://en.wikipedia.org/wiki/Special:Random"]]];
+
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *) newWebView {
+    return;
+    CATransition *animation = [CATransition animation];
+    [animation setDelegate:self];
+    [animation setDuration:2.0f];
+    animation.startProgress = 0;
+    animation.endProgress   = 1; 
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
+    [animation setType:@"crossfade"];
+    [animation setSubtype:kCATransitionFade];
+    
+    [animation setRemovedOnCompletion:NO];
+//    [animation setFillMode: @"extended"];
+    [[self.view layer] addAnimation:animation forKey:@"crossfade"]; 
+    [webView removeFromSuperview];
+//    [self.view addSubview:newWebView];
     
     [UIView beginAnimations:@"crossfade" context:nil];
     [UIView setAnimationDuration:1.0];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [webView loadHTMLString:response.bodyAsString baseURL:nil];
-//    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.whattimeisit.com"]]];
-    [UIView commitAnimations];
+    [UIView commitAnimations];    
 }
 
 @end

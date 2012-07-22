@@ -10,7 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <RestKit/RestKit.h>
 
-@interface MMViewController : UIViewController <AVAudioRecorderDelegate, RKRequestDelegate> {
+@interface MMViewController : UIViewController <AVAudioRecorderDelegate, RKRequestDelegate, UIWebViewDelegate> {
     NSString* recordingFilePath;
 }
 
