@@ -5,9 +5,7 @@ import json
 import tornado.web
 import tornado.ioloop
 from tornado import template, ioloop
-from mwlib.uparser import simpleparse
 from config import *
-from lxml import etree
 from utils import image_search, wikipedia_search, wolframalpha_search, freebase_search, lucky_search
 
 

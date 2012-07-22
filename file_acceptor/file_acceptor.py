@@ -1,7 +1,5 @@
 import tornado.ioloop
 import tornado.web
-import memcache
-import memcache
 import requests
 import random
 import envoy
@@ -14,7 +12,6 @@ import tornado.web
 from lxml import etree
 from bs4 import BeautifulSoup
 from tornado import template, ioloop
-from mwlib.uparser import simpleparse
 import markdown
 import requests
 import json
