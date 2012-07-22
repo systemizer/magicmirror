@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+  {% for result in results %}
+  <img src="{{result['img_url']}}" />
+  {% end %}
+</div>
+<script>
+$('img').each(function(index,value) {
+  var value$ = $(value);
+  value$.css('position','absolute');
+  value$.css("left",Math.floor(Math.random()*90)+"%")
+  value$.css("top",Math.floor(Math.random()*90)+"%")
+});
+</script>
+{% end %}

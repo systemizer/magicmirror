@@ -17,6 +17,20 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write(loader.load("index.html").generate())
 
+class ImageHandler(tornado.web.RequestHandler):
+    def get(self):
+        keyword = self.get_argument("keyword")
+        base_url = "http://ajax.googleapis.com/ajax/services/search/images"
+        payload = {'v':'1.0',
+                   'rsz':'8',
+                   'q':keyword,
+                   'safe':'active'}
+
+        url = "%s?%s" % (base_url,urllib.urlencode(payload))
+        r = requests.get(url)
+        image_url = r.json['responseData']['results'][0]['url']
+        self.write(loader.load("image.html").generate(image_url=image_url))
+
 class WikipediaHandler(tornado.web.RequestHandler):
     def get(self):
         keyword = self.get_argument("keyword")
@@ -90,9 +104,8 @@ class WolframAlphaHandler(tornado.web.RequestHandler):
                             'plaintext':pod.find("plaintext").text,
                             'img_url':pod.find("img")['src']
                             })
-        self.write(json.dumps({'results':results}))
-        
-        
+
+        self.write(loader.load("wolframalpha.html").generate(results=results))
 
 class FreebaseHandler(tornado.web.RequestHandler):
     def get(self):
@@ -112,6 +125,7 @@ class FreebaseHandler(tornado.web.RequestHandler):
 
 application = tornado.web.Application([
     (r"/", MainHandler),
+    (r"/resources/image/",ImageHandler),
     (r"/resources/wikipedia/", WikipediaHandler),
     (r"/resources/freebase/", FreebaseHandler),
     (r"/resources/wolframalpha/", WolframAlphaHandler),
