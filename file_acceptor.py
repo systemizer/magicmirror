@@ -28,11 +28,11 @@ class MainHandler(tornado.web.RequestHandler):
         self.write("Hello, world")
 
 class AudioHandler(tornado.web.RequestHandler):
-    def post(self):
-
+    def post(self):        
+        
 		#print '_______________', self.request.files
 		body = self.request.files['recording'][0]['body']
-	
+                query_type = self.get_argument("type")
 
 		filename = str(int(random.random()*1000000))
 		file = open('tempfiles/' + filename + '.wav', 'w')
@@ -63,31 +63,19 @@ class AudioHandler(tornado.web.RequestHandler):
 		keyword = NaiveWordSelector.topKeyword(utterance.split(' '))
 		print keyword
 
-		payload1 = {'query':keyword}
-		#url1 = "%s?%s" % ("https://www.googleapis.com/freebase/v1/search",urllib.urlencode(payload1))
-
-		#r1 = requests.get(url1)
-		#results = r1.json['result']
-
-		#f_result = None
-
-		#for result in results:
-		#	if result.has_key("id") and result['id'].startswith("/en/") and result.has_key("notable"):
-		#		f_result = result
-		#		break
-
-		#if not f_result:
-		#	f.write("failed to find entity")
-
-		#url_path = f_result['id'].replace("/en/","")
-		#url = "http://en.wikipedia.org/wiki/%s" % url_path
-
-		#r2 = requests.get(url)
-		background_size = "contain"
-		image = image_search(keyword)		
-		self.write(loader.load("image.html").generate(image_url=image['url'],background_size=background_size))
-
-
+                if query_type=="image":
+                    background_size = "contain"
+                    image = image_search(keyword)		
+                    self.write(loader.load("image.html").generate(image_url=image['url'],background_size=background_size,query_type=query_type))
+                elif query_type=="lucky":
+                    url = lucky_search(keyword)
+                    self.write(loader.load("redirect.html").generate(url=url,query_type=query_type))
+                elif query_type=="wikipedia":
+                    url = wikipedia_search(keyword)
+                    self.write(loader.load("redirect.html").generate(url=url,query_type=query_type))
+                elif query_type=="wolframalpha":
+                    results,image_url,desc = wolframalpha_search(keyword)
+                    self.write(loader.load("wolframalpha.html").generate(results=results,keyword=keyword,image_url=image_url,desc=desc,query_type=query_type))
 
 
 application = tornado.web.Application([

@@ -1,6 +1,9 @@
 <html>
   <head>
     <title>{% block title %}Default title{% end %}</title>
+	{% if query_type %}
+	<meta name="query_type" content="{{query_type}}" />
+	{% end %}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="http://masonry.desandro.com/jquery.masonry.min.js"></script>
 	<link type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet" />

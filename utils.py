@@ -39,8 +39,7 @@ def wikipedia_search(keyword):
     
     url_path = f_result['id'].replace("/en/","")
     url = "http://en.wikipedia.org/wiki/%s" % url_path
-    r2 = requests.get(url)
-    return r2.text
+    return url
 
 def wolframalpha_search(keyword):
     base_url = "http://api.wolframalpha.com/v2/query"
