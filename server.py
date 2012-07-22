@@ -14,31 +14,32 @@ loader = template.Loader("templates")
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write(loader.load("index.html").generate())
+        self.write(loader.load("index.html").generate(query_type=None))
 
 class ImageHandler(tornado.web.RequestHandler):
     def get(self):
         keyword = self.get_argument("keyword")
         image = image_search(keyword)
         background_size = "contain"
-        self.write(loader.load("image.html").generate(image_url=image['url'],background_size=background_size))
+        self.write(loader.load("image.html").generate(image_url=image['url'],background_size=background_size,query_type=None))
 
 class LuckyHandler(tornado.web.RequestHandler):
     def get(self):
         keyword = self.get_argument("keyword")
         url = lucky_search(keyword)
-        self.write(loader.load("redirect.html").generate(url=url))
+        self.write(loader.load("redirect.html").generate(url=url,query_type=None))
 
 class WikipediaHandler(tornado.web.RequestHandler):
     def get(self):
         keyword = self.get_argument("keyword")
-        self.write(wikipedia_search(keyword))
+        url = wikipedia_search(keyword)
+        self.write(loader.load("redirect.html").generate(url=url,query_type=None))
 
 class WolframAlphaHandler(tornado.web.RequestHandler):
     def get(self):
         keyword = self.get_argument("keyword")
-        results = wolframalpha_search(keyword)
-        self.write(loader.load("wolframalpha.html").generate(results=results))
+        results,image_url,desc = wolframalpha_search(keyword)
+        self.write(loader.load("wolframalpha.html").generate(results=results,keyword=keyword,image_url=image_url,desc=desc,query_type=None))
 
 class FreebaseHandler(tornado.web.RequestHandler):
     def get(self):

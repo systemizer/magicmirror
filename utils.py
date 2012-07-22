@@ -39,24 +39,38 @@ def wikipedia_search(keyword):
     
     url_path = f_result['id'].replace("/en/","")
     url = "http://en.wikipedia.org/wiki/%s" % url_path
-    r2 = requests.get(url)
-    return r2.text
+    return url
 
 def wolframalpha_search(keyword):
     base_url = "http://api.wolframalpha.com/v2/query"
     payload = {'input':keyword,
                'appid':WOLFRAM_ALPHA_KEY}
 
+   # soup = BeautifulSoup(wikipedia_search(keyword))
+    
+    # infobox = None
+
+    # infoboxes = soup.find_all(lambda x: x.has_key("class") and "infobox" in x['class'])
+    # if infoboxes:
+    #     infobox = infoboxes[0]
+
+    desc, image_url = freebase_search(keyword)
+    
+
     url = "%s?%s" % (base_url,urllib.urlencode(payload))
     r = requests.get(url)
     soup = BeautifulSoup(r.text)
     results = []
     for pod in soup.find_all("pod"):
+        if int(pod.find("img")['height'])<50:
+             continue
         results.append({'title':pod['title'],
                         'plaintext':pod.find("plaintext").text,
-                        'img_url':pod.find("img")['src']
+                        'img_url':pod.find("img")['src'],
+                        'img_width':int(pod.find("img")['width']),
                         })
-    return results
+    results = sorted(results,key = lambda x : x['img_width'])
+    return results,image_url,desc
 
 def freebase_search(keyword):
     payload1 = {'query':keyword}

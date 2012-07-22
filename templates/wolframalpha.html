@@ -1,17 +1,24 @@
 {% extends "base.html" %}
 
 {% block body %}
-<div class="container">
-  {% for result in results %}
-  <img src="{{result['img_url']}}" />
-  {% end %}
+<!-- <style> -->
+<!-- img {float:left;padding:10px;margin:5px;background:#EEE;} -->
+<!-- </style> -->
+<div class="container" style="padding-top:20px;">  
+  <h2 style="font-size:375%;line-height:140%;">{{keyword}}</h2>
+  <p style="font-size:150%;line-height:120%;">{{desc[0:600]}}</p>
+  <hr />
+  <div id="tile-container">
+	{% for result in results %}
+	<div class="imgbox">
+	  <img src="{{result['img_url']}}" />
+	</div>
+	{% end %}
+  </div>
 </div>
 <script>
-$('img').each(function(index,value) {
-  var value$ = $(value);
-  value$.css('position','absolute');
-  value$.css("left",Math.floor(Math.random()*90)+"%")
-  value$.css("top",Math.floor(Math.random()*90)+"%")
-});
+  $('#tile-container').imagesLoaded(function() {
+  $('#tile-container').masonry({itemSelector:'.imgbox',columnWidth: 100,gutterWidth:20,isFitWidth:true});
+})
 </script>
 {% end %}
