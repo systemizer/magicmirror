@@ -133,7 +133,27 @@ int RECORDING_PERIOD = 5;
 
 -(void) request:(RKRequest *)request didLoadResponse:(RKResponse *)response {
     NSLog(@"RESPONSE LOADED: \n\n  %@",response.bodyAsString);
+    
+    CATransition *animation = [CATransition animation];
+    [animation setDelegate:self];
+    [animation setDuration:1.0f];
+    animation.startProgress = 0;
+    animation.endProgress   = 1; 
+//    [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
+    [animation setType:@"crossfade"];
+    [animation setSubtype:kCATransitionFade];
+    
+    [animation setRemovedOnCompletion:NO];
+    [animation setFillMode: @"extended"];
+    [animation setRemovedOnCompletion: NO];
+    [[webView layer] addAnimation:animation forKey:@"crossfade"]; 
+    
+    [UIView beginAnimations:@"crossfade" context:nil];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [webView loadHTMLString:response.bodyAsString baseURL:nil];
+//    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.whattimeisit.com"]]];
+    [UIView commitAnimations];
 }
 
 @end
