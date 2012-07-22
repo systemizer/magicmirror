@@ -6,8 +6,9 @@
 <style>
 body {font-family: 'Shanti', sans-serif;}
 .container {padding-top:20px;}
-h1.splash-title {font-size:600%;line-height:150%;margin-bottom:50px; }
+h1.splash-title {font-size:650%;line-height:150%;margin-bottom:50px;text-align:center; }
 h2.splash-title {font-size:300%; line-height:125%;font-weight:400;}
+#signup-input {font-size:150%;line-height:120%;height:100%;}
 #top-half-container {
 /* IE10 Consumer Preview */ 
 background-image: -ms-linear-gradient(left, #FFFFFF 0%, #EEEEEE 100%);
@@ -29,7 +30,7 @@ background-image: linear-gradient(to right, #FFFFFF 0%, #EEEEEE 100%);
 padding-bottom:20px;
 }
 
-.funny-text {font-family: 'Henny Penny', cursive;font-size:320%;line-height:140%;text-align:right; margin-top:20px;}
+.funny-text {font-size:320%;line-height:140%;text-align:right; margin-top:20px;}
 #splash-arrow {
 position:relative;
 right:75px;
@@ -40,7 +41,7 @@ transform:rotate(55deg);
 -o-transform:rotate(55deg); /* Opera */
 }
 #ios-icon {position:relative; bottom:7px;}
-#sign-up-input {font-size:150%;line-height:120%;}
+#signup-button {font-size:200%;}
 
 </style>
 {% end %}
@@ -52,10 +53,8 @@ transform:rotate(55deg);
 		<img src="/static/img/ipad.png" />
 	  </div>
 	  <div class="span6">
-		<h1 class="splash-title">Mirror mirror on the wall...</h1>
-		<h2 class="splash-title">there's an app for that</h2>
-		<button class="btn btn-large" id="signup-button">Sign up now</button>
-		<input id="sign-up-input" type="text" placeholder="Be the first to get it..." />
+		<h1 class="splash-title">Magic <br>Mirror</h1>
+		<a class="btn btn-large btn-primary span4" href="#myModal" data-toggle="modal" id="signup-button">Sign up now</a>
 	  </div>
 	</div>
   </div>
@@ -74,4 +73,18 @@ transform:rotate(55deg);
     </div>
   </div>
 </div>
+<form action="" method="POST">
+  <div class="modal hide" id="myModal">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal">×</button>
+	  <h3>We'll get back to you when we launch.</h3>
+	</div>
+	<div class="modal-body">
+	  <input name="email" id="signup-input" class="span4" type="text" placeholder="Leave us your email..."/>
+	</div>
+	<div class="modal-footer">
+      <input type="submit" class="btn btn-primary" value="Thanks!" />
+	</div>
+  </div>
+</form>
 {% end %}

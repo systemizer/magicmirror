@@ -9,12 +9,15 @@ from config import *
 from utils import image_search, wikipedia_search, wolframalpha_search, freebase_search, lucky_search
 
 
-
 loader = template.Loader("templates")
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write(loader.load("index.html").generate(query_type=None))
+
+    def post(self):
+        email = self.get_argument("email")
+        self.write(email)
 
 class ImageHandler(tornado.web.RequestHandler):
     def get(self):
