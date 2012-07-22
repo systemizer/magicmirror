@@ -39,8 +39,8 @@ class WikipediaHandler(tornado.web.RequestHandler):
 class WolframAlphaHandler(tornado.web.RequestHandler):
     def get(self):
         keyword = self.get_argument("keyword")
-        results = wolframalpha_search(keyword)
-        self.write(loader.load("wolframalpha.html").generate(results=results))
+        results,image_url,desc = wolframalpha_search(keyword)
+        self.write(loader.load("wolframalpha.html").generate(results=results,keyword=keyword,image_url=image_url,desc=desc))
 
 class FreebaseHandler(tornado.web.RequestHandler):
     def get(self):
