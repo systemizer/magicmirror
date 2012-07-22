@@ -17,6 +17,8 @@ import markdown
 import requests
 import json
 from utils import image_search, wikipedia_search, wolframalpha_search, freebase_search
+import os
+
 
 options.logging='none'
 
@@ -33,7 +35,6 @@ class AudioHandler(tornado.web.RequestHandler):
 		#print '_______________', self.request.files
 		body = self.request.files['recording'][0]['body']
 	
-
 		filename = str(int(random.random()*1000000))
 		file = open('tempfiles/' + filename + '.wav', 'w')
 		file.write(body)
@@ -55,6 +56,9 @@ class AudioHandler(tornado.web.RequestHandler):
 
 		#print r.json
 		
+		os.remove('tempfiles/' + filename + '.wav')
+		os.remove('tempfiles/' + filename + '.flac')
+
 		if r.status_code != 200 or r.json is None or not r.json['hypotheses']:
 			self.write(json.dumps({'status': 'failed'}))
 			return
@@ -62,6 +66,7 @@ class AudioHandler(tornado.web.RequestHandler):
 		print utterance
 		keyword = NaiveWordSelector.topKeyword(utterance.split(' '))
 		print keyword
+
 
 		payload1 = {'query':keyword}
 		#url1 = "%s?%s" % ("https://www.googleapis.com/freebase/v1/search",urllib.urlencode(payload1))

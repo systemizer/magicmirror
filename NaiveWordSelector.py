@@ -10,16 +10,33 @@ WORDNIK_ENDPOINT = ("http://api.wordnik.com//v4/word.json/","/frequency?startYea
 WORDNIK_AUTH_KEY = "a7acd5e8c09b05c70c00705e15808bbe61a30408ce4dec62c"
 
 COMMON_WORDS = {
-    'yeah' : 1000,
-    'but'  : 1000,
-    'um'   : 1000,
-    'uh'   : 1000,
-    'something': 1000,
-    'ok'    : 1000,
-    'okay'  : 1000,
-    'is'    : 1000,
-    'it'    : 1000,
-    'that\'s' : 1000
+    'yeah' : 100000,
+    'but'  : 100000,
+    'um'   : 100000,
+    'uh'   : 100000,
+    'something': 100000,
+    'ok'    : 100000,
+    'okay'  : 100000,
+    'is'    : 100000,
+    'it'    : 100000,
+    'that'  : 100000,
+    'that\'s' : 100000,
+    'said' : 100000,
+    'say'   : 100000,
+    'much' : 100000,
+    'yet'  : 100000,
+    'cool' : 100000,
+    'now' : 100000,
+    'crap' : 100000,
+    'what' : 100000,
+    'when' : 100000,
+    'of'    : 100000,
+    'up'    : 100000,
+    'for'   : 100000,
+    'hi' : 100000,
+    'there' : 100000,
+    'fun' : 100000,
+    'up' : 100000,
 }
 
 def topKeyword(words):
@@ -40,14 +57,14 @@ def topKeyword(words):
         elif word in COMMON_WORDS:
             d[word] = [1, COMMON_WORDS[word]]
         elif len(word) == 1:
-            d[word] = [1, 1000]
+            d[word] = [1, 100000]
         else:
-            url = WORDNIK_ENDPOINT[0]+word+WORDNIK_ENDPOINT[1]
-            r = requests.get(url, headers={'api_key': WORDNIK_AUTH_KEY}) 
+            wordnik_url = WORDNIK_ENDPOINT[0]+word+WORDNIK_ENDPOINT[1]
+            r = requests.get(wordnik_url, headers={'api_key': WORDNIK_AUTH_KEY}) 
             robj = json.loads(r.text)
 
             try:
-                freq = robj["frequency"][0]["count"]+1 # add one to fix 0 freq results, which happen for the lowest freq valid words
+                freq = sum([item["count"] for item in robj["frequency"]])+1 # add one to fix 0 freq results, which happen for the lowest freq valid words
             except:
                 freq = 10
 
@@ -65,20 +82,21 @@ def topKeyword(words):
 
 
 ######  three grams ######
-
+    import urllib
     for index in range(0, len(words)-2):
        query = words[index] + ' ' + words[index + 1] + ' ' + words[index+2][0:1]
        print '3gram query ', query
+       #print "%s?%s" % (url,urllib.urlencode({'q':query}))
        three_reqs.append(grequests.get(url, params={'q' : query}))
 
     three_responses = grequests.map(three_reqs, size = len(words))
 
     for i in range(len(three_responses)):
         xml = bs(three_responses[i].content)
-        print xml
+        #print xml
         for sug in xml.find_all('suggestion'):
             s = sug['data']
-            print 'suggestion: ', s
+            #print 'suggestion: ', s
             for gap1 in ('', ' '):
                 for gap2 in ('', ' '):
                     new_q = words[i] + gap1 + words[i+1] + gap2 + words[i+2]
@@ -111,7 +129,7 @@ def topKeyword(words):
         print xml
         for sug in xml.find_all('suggestion'):
             s = sug['data']
-            print 'suggestion: ', s
+            #print 'suggestion: ', s
             if s == words[i] + '' + words[i+1] or s == words[i] + ' ' + words[i+1]:
                 two_grams.append(s)
 
