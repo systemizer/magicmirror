@@ -15,6 +15,11 @@ def image_search(keyword):
     images = r.json['responseData']['results']        
     return sorted(images,key= lambda x: -int(x['width']))[0]
 
+def lucky_search(keyword):
+    url = "http://www.google.com/search?q=%s&btnI" % keyword
+    return url
+    
+
 def wikipedia_search(keyword):
     payload1 = {'query':keyword}
     url1 = "%s?%s" % ("https://www.googleapis.com/freebase/v1/search",urllib.urlencode(payload1))
