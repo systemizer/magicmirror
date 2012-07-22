@@ -1,10 +1,14 @@
 import urllib
+import markdown
 import requests
 import json
 import tornado.web
 import tornado.ioloop
 from tornado import template, ioloop
 from mwlib.uparser import simpleparse
+from config import *
+from lxml import etree
+from bs4 import BeautifulSoup
 
 
 loader = template.Loader("templates")
@@ -12,6 +16,31 @@ loader = template.Loader("templates")
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write(loader.load("index.html").generate())
+
+class WikipediaHandler(tornado.web.RequestHandler):
+    def get(self):
+        keyword = self.get_argument("keyword")
+        payload1 = {'query':keyword}
+        url1 = "%s?%s" % ("https://www.googleapis.com/freebase/v1/search",urllib.urlencode(payload1))
+
+        r1 = requests.get(url1)
+        results = r1.json['result']
+        
+        f_result = None
+
+        for result in results:
+            if result.has_key("id") and result['id'].startswith("/en/") and result.has_key("notable"):
+                f_result = result
+                break
+
+        if not f_result:
+            f.write("failed to find entity")
+
+        url_path = f_result['id'].replace("/en/","")
+        url = "http://en.wikipedia.org/wiki/%s" % url_path
+        
+        r2 = requests.get(url)
+        self.write(r2.text)
 
 # class WikipediaHandler(tornado.web.RequestHandler):
 #     def get(self):
@@ -24,9 +53,46 @@ class MainHandler(tornado.web.RequestHandler):
 #                    'rvprop':'content'}        
 
 #         base_url = "http://en.wikipedia.org/w/api.php"
-#         url = "%s?%s" % (base_url,urllib.urlencode(payload))
+#         url = "%s?%s" % (base_url,urllib.urlencode(payload))                
 #         r = requests.get(url)
-#         self.write(simpleparse(unicode(r.json['query']['pages']['6710844']['revisions'][0]['*'])))
+#         pages = r.json['query']['pages']
+#         self.write(r.json)
+        
+#         wikitext = pages[pages.keys()[0]]['revisions'][0]['*']
+#         infobox_index = wikitext.index('{{Infobox')
+#         if infobox_index==-1:
+#             self.write("FAILED")
+#         wikitext = wikitext[infobox_index:]
+#         wikitext = wikitext[0:wikitext.index("}}")]
+#         results = {}
+#         for info_part in wikitext.split("|")[1:]:            
+#             entry = info_part.split("=")
+#             if len(entry)!=2:
+#                 continue
+#             results[entry[0]] = entry[1].replace("[","").replace("]","").replace("\n","")
+
+#         self.write(json.dumps(results))
+
+
+class WolframAlphaHandler(tornado.web.RequestHandler):
+    def get(self):
+        keyword = self.get_argument("keyword")
+        base_url = "http://api.wolframalpha.com/v2/query"
+        payload = {'input':keyword,
+                   'appid':WOLFRAM_ALPHA_KEY}
+
+        url = "%s?%s" % (base_url,urllib.urlencode(payload))
+        r = requests.get(url)
+        soup = BeautifulSoup(r.text)
+        results = []
+        for pod in soup.find_all("pod"):
+            results.append({'title':pod['title'],
+                            'plaintext':pod.find("plaintext").text,
+                            'img_url':pod.find("img")['src']
+                            })
+        self.write(json.dumps({'results':results}))
+        
+        
 
 class FreebaseHandler(tornado.web.RequestHandler):
     def get(self):
@@ -46,8 +112,9 @@ class FreebaseHandler(tornado.web.RequestHandler):
 
 application = tornado.web.Application([
     (r"/", MainHandler),
-    #(r"/resources/wikipedia/", WikipediaHandler),
+    (r"/resources/wikipedia/", WikipediaHandler),
     (r"/resources/freebase/", FreebaseHandler),
+    (r"/resources/wolframalpha/", WolframAlphaHandler),
     (r'/static/(.*)', tornado.web.StaticFileHandler, {'path': "static"}),
 ])
 
