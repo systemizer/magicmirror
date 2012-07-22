@@ -12,23 +12,50 @@
 
 #define DOCUMENTS_FOLDER [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
-int RECORDING_PERIOD = 10;
+
+typedef enum {
+    kWeb,
+    kImage,
+    kWikipedia,
+    kAnalytical,
+    kSmartSelect
+} ContentMode;
+
+static int RECORDING_PERIOD = 4;
     
 @interface MMViewController ()
 
 @end
 
 @implementation MMViewController
-@synthesize recorder,webView;
+@synthesize recorder,webView,scrollView,contentMode,replacementWebView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // Setup the webview
-    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
-    webView.delegate = self;
-    [self.view addSubview:webView];
+    // Setup the webview and scrollview
+    contentMode = @"Web";
+    
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+    scrollView.contentSize = CGSizeMake(1024*5, 768);
+    scrollView.pagingEnabled = YES;
+    scrollView.backgroundColor = [UIColor blackColor];
+    scrollView.delegate = self;
+    scrollView.showsHorizontalScrollIndicator = NO;
+    [scrollView setBounces:NO];
+    [self.view addSubview:scrollView];
+    modes = [NSArray arrayWithObjects:@"Web",@"Image",@"Wikipedia",@"Analytical",@"Smart Select", nil];
+    for (int i=0;i<5;i++) {
+        UILabel* l = [[UILabel alloc] initWithFrame:CGRectMake((1024-300)/2+1024*i, (768-60)/2, 300, 60)];
+        l.font = [UIFont fontWithName:@"Arial" size:50];
+        l.textColor = [UIColor whiteColor];
+        l.backgroundColor = [UIColor clearColor];
+        [scrollView addSubview:l];
+        l.text = [modes objectAtIndex:i];
+    }
+    
+    webView = nil;
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *err = nil;
@@ -98,13 +125,13 @@ int RECORDING_PERIOD = 10;
 
 
 -(void) audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag {
-    NSLog(@"RECORDER DONE. SENDING AND RESTARTING!");
+    NSLog(@"Recording done. Sending and restarting...");
     NSURL *url = [NSURL fileURLWithPath: recordingFilePath];
     NSError *err = nil;
     NSData *audioData = [NSData dataWithContentsOfFile:[url path] options: 0 error:&err];
         
     RKObjectManager* om = [RKObjectManager sharedManager];
-    NSLog(@"%@",om.baseURL);
+//    NSLog(@"%@",om.baseURL);
     RKParams* params = [RKParams params];
     
     // submit audio file in post
@@ -135,57 +162,63 @@ int RECORDING_PERIOD = 10;
 -(void) request:(RKRequest *)request didLoadResponse:(RKResponse *)response {
     NSLog(@"RESPONSE LOADED: \n\n  %@",response.bodyAsString);
 
-
-    CATransition *animation = [CATransition animation];
-    [animation setDelegate:self];
-    [animation setDuration:2.0f];
-    animation.startProgress = 0;
-    animation.endProgress   = 1; 
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    [animation setType:@"crossfade"];
-    [animation setSubtype:kCATransitionFade];
+    if ([response.bodyAsString rangeOfString:@"failed"].location != NSNotFound) {
+        return;
+    }
     
-    [animation setRemovedOnCompletion:NO];
-    //    [animation setFillMode: @"extended"];
-    [[webView layer] addAnimation:animation forKey:@"crossfade"]; 
-
-    [webView loadHTMLString:response.bodyAsString baseURL:[NSURL URLWithString:@"http://"]];
-
+    replacementWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+    replacementWebView.delegate = self;
+    [replacementWebView setUserInteractionEnabled:NO];
+    [replacementWebView loadHTMLString:response.bodyAsString baseURL:[NSURL URLWithString:@"http://"]];
+    [scrollView addSubview:replacementWebView];
+    [scrollView bringSubviewToFront:replacementWebView];
+    [scrollView bringSubviewToFront:webView];
 //    [webView removeFromSuperview];
 //    //    [self.view addSubview:newWebView];
 //    [webView loadHTMLString:response.bodyAsString baseURL:[NSURL URLWithString:@"http://"]];
 //
-    [UIView beginAnimations:@"crossfade" context:nil];
-    [UIView setAnimationDuration:1.0];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView commitAnimations];    
+  
     
 //    [self.view addSubview:newView];
 //    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://en.wikipedia.org/wiki/Special:Random"]]];
 
 }
 
--(void)webViewDidFinishLoad:(UIWebView *) newWebView {
-    return;
+-(void)webViewDidFinishLoad:(UIWebView *)newWebView {
+    NSLog(@"didfinishloading");
+    
+    
     CATransition *animation = [CATransition animation];
     [animation setDelegate:self];
-    [animation setDuration:2.0f];
+    [animation setDuration:0.5f];
     animation.startProgress = 0;
     animation.endProgress   = 1; 
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     [animation setType:@"crossfade"];
     [animation setSubtype:kCATransitionFade];
+    [animation setDelegate:self];
     
     [animation setRemovedOnCompletion:NO];
-//    [animation setFillMode: @"extended"];
-    [[self.view layer] addAnimation:animation forKey:@"crossfade"]; 
-    [webView removeFromSuperview];
-//    [self.view addSubview:newWebView];
-    
+    //    [animation setFillMode: @"extended"];
+    [[self.scrollView layer] addAnimation:animation forKey:@"crossfade"]; 
+    webView.alpha = 0;
+//    webView = newWebView;
     [UIView beginAnimations:@"crossfade" context:nil];
-    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationDuration:0.2];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView commitAnimations];    
+    [UIView commitAnimations];  
+}
+
+
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    // clean up the old webview
+    [webView removeFromSuperview];
+    webView = replacementWebView;
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)tscrollView {
+    NSLog(@"%f",tscrollView.contentOffset.x);
+    contentMode = 
 }
 
 @end

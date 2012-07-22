@@ -1,4 +1,6 @@
 *pyc
 *~
 *#
+tempfiles/*
 ENV
+.DS_STORE

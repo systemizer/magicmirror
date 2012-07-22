@@ -396,10 +396,12 @@
 		91F747AC15BB666500C8A8F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Doug Feigelson (83VE3EP835)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MagicMirror/MagicMirror-Prefix.pch";
 				INFOPLIST_FILE = "MagicMirror/MagicMirror-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8ED67F75-9C49-4931-9108-231EFB910406";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -407,10 +409,12 @@
 		91F747AD15BB666500C8A8F0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Doug Feigelson (83VE3EP835)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MagicMirror/MagicMirror-Prefix.pch";
 				INFOPLIST_FILE = "MagicMirror/MagicMirror-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8ED67F75-9C49-4931-9108-231EFB910406";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

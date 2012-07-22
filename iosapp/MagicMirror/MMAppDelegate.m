@@ -6,10 +6,11 @@
 //  Copyright (c) 2012 MIT. All rights reserved.
 //
 
-#import "MMAppDelegate.h"VIEW
+#import "MMAppDelegate.h"
 #import <RestKit/RestKit.h>
 
 NSString* SERVER_BASE_URL = @"http://192.168.0.161:8888";
+//NSString* SERVER_BASE_URL = @"http://magicmirrorapp.com:8888";
 //NSString* SERVER_BASE_URL = @"http://www.google.com";
 
 @implementation MMAppDelegate
