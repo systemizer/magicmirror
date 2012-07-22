@@ -17,13 +17,9 @@ from tornado import template, ioloop
 import markdown
 import requests
 import json
-<<<<<<< HEAD
 from utils import image_search, wikipedia_search, wolframalpha_search, freebase_search
 import os
-
-=======
 from utils import *
->>>>>>> 2a98e14475df7751cd76b5ab6d93fc5706b8eb25
 
 options.logging='none'
 
@@ -73,24 +69,23 @@ class AudioHandler(tornado.web.RequestHandler):
 		keyword = NaiveWordSelector.topKeyword(utterance.split(' '))
 		print keyword
 
+		query_types = ["Image","Web","Wikipedia","Analytical"]
+		if query_type not in query_types:
+		    query_type = query_types[random.randint(0,len(query_types))]
 
-        query_types = ["Image","Web","Wikipedia","Analytical"]
-        if query_type not in query_types:
-            query_type = query_types[random.randint(0,len(query_types))]
-
-        if query_type=="Image":
-            background_size = "contain"
-            image = image_search(keyword)		
-            self.write(loader.load("image.html").generate(image_url=image['url'],background_size=background_size,query_type=query_type))
-        elif query_type=="Web":
-            url = lucky_search(keyword)
-            self.write(loader.load("redirect.html").generate(url=url,query_type=query_type))
-        elif query_type=="Wikipedia":
-            url = wikipedia_search(keyword)
-            self.write(loader.load("redirect.html").generate(url=url,query_type=query_type))
-        elif query_type=="Analytical":
-            results,image_url,desc = wolframalpha_search(keyword)
-            self.write(loader.load("wolframalpha.html").generate(results=results,keyword=keyword,image_url=image_url,desc=desc,query_type=query_type))
+		if query_type=="Image":
+		    background_size = "contain"
+		    image = image_search(keyword)		
+		    self.write(loader.load("image.html").generate(image_url=image['url'],background_size=background_size,query_type=query_type))
+		elif query_type=="Web":
+		    url = lucky_search(keyword)
+		    self.write(loader.load("redirect.html").generate(url=url,query_type=query_type))
+		elif query_type=="Wikipedia":
+		    url = wikipedia_search(keyword)
+		    self.write(loader.load("redirect.html").generate(url=url,query_type=query_type))
+		elif query_type=="Analytical":
+		    results,image_url,desc = wolframalpha_search(keyword)
+		    self.write(loader.load("wolframalpha.html").generate(results=results,keyword=keyword,image_url=image_url,desc=desc,query_type=query_type))
 
 
 application = tornado.web.Application([
