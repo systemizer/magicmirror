@@ -13,6 +13,8 @@
 @interface MMViewController : UIViewController <AVAudioRecorderDelegate, RKRequestDelegate, UIWebViewDelegate, UIScrollViewDelegate> {
     NSString* recordingFilePath;
     NSArray* modes;
+//    NSMutableDictionary* webviews;
+//    NSMutableArray* labelImages;
 }
 
 @property AVAudioRecorder* recorder; 

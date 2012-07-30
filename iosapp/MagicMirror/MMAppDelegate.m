@@ -10,6 +10,7 @@
 #import <RestKit/RestKit.h>
 
 NSString* SERVER_BASE_URL = @"http://192.168.0.161:8888";
+//NSString* SERVER_BASE_URL = @"http://192.168.1.13:8888";
 //NSString* SERVER_BASE_URL = @"http://magicmirrorapp.com:8888";
 //NSString* SERVER_BASE_URL = @"http://www.google.com";
 
